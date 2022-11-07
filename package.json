@@ -1,0 +1,52 @@
+{
+  "name": "letterfall",
+  "version": "1.0.0",
+  "description": "Letter fall game \u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[F\u001b[C\u001b[B\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[D\u001b[D\u001b[D\u001b[Dtest",
+  "old-main": "index.js",
+  "private": true,
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "source-map-loader": "^4.0.1",
+    "ts-loader": "^9.4.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.14",
+    "@types/node": "^18.11.9",
+    "common-js": "^0.3.8",
+    "concurrently": "^7.5.0",
+    "cors": "^2.8.5",
+    "css-loader": "^6.7.1",
+    "html-loader": "^4.2.0",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.20",
+    "style-loader": "^3.3.1",
+    "typescript": "^4.8.4",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
+  },
+  "scripts": {
+    "tsc": "tsc",
+    "dev": "nodemon server/server.js --watch ",
+    "old-dev": "concurrently \"npm run tsc --watch\" \"nodemon -q dist_ts/index.js\" ",    
+    "start": "npm run tsc && node dist/index.js",
+    "build": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anetrda/LetterFall.git"
+  },
+  "keywords": [
+    "letter",
+    "fall",
+    "game",
+    "test"
+  ],
+  "author": "",
+  "license": "SEE LICENSE IN LICENCE.md",
+  "bugs": {
+    "url": "https://github.com/anetrda/LetterFall/issues"
+  },
+  "homepage": "https://github.com/anetrda/LetterFall#readme"
+}

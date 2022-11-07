@@ -4,6 +4,5 @@
  Creating a game for with falling letters and score
  
  this project should use 
- - typescript
- - node.js
+ - javascript
  - and some HTML5,CSS

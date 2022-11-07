@@ -1,0 +1,15 @@
+body {
+  background-color: darkred;
+  margin: 0;
+}
+
+canvas {
+  background-color: darkgray;
+  width: 100vw;
+  height: 100vh;
+  display: block;  
+}
+
+h1 {
+  background: url('./assets/LF_icon.png') 
+}
