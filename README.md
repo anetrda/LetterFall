@@ -6,3 +6,6 @@
  this project should use 
  - javascript
  - and some HTML5,CSS
+
+ press spacebar to start the game , press spacebar again to pause it
+ game should last 20 seconds and then it stops automaticaly
