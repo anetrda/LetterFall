@@ -92,6 +92,7 @@ function parseOBJ(text) {
       let randomPosition = Math.random()
       setGeometry();
       const numTriangles = parts.length - 2;
+      console.log(" num triangles " , numTriangles )
       for (let tri = 0; tri < numTriangles; ++tri) {
         addVertex(parts[0]);
         addVertex(parts[tri + 1]);
@@ -235,8 +236,13 @@ async function main() {
     letterList.push({
       name: object,
       verteces: data.position,
-      normals: data.normal
-      })
+      normals: data.normal,
+      startPosition: [ 
+        (Math.random()*10)-5,
+        4, //(gl.canvas.height/2),
+        -20
+      ],
+    })
 
     // create a buffer for each array by calling
     // gl.createBuffer, gl.bindBuffer, gl.bufferData
@@ -314,7 +320,7 @@ async function main() {
   }
 
   function render(time) {
-    console.log(" time " , time, "\n delta time ", deltaTime ,"\n previous time ", previousTime, "\n play time ", playTime )
+   // console.log(" time " , time, "\n delta time ", deltaTime ,"\n previous time ", previousTime, "\n play time ", playTime )
     if (time){
       deltaTime = time - previousTime
       previousTime = time
@@ -361,11 +367,16 @@ async function main() {
     // are at the same space.
     //let u_world = m4.yRotation(playTime);
     //u_world = m4.translate(u_world, ...objOffset);
-    //console.log(" what is in parts " , parts)
-    console.log(" obj offset ", objOffset)
-    for (const {bufferInfo, material} of parts) {
-      let u_world = m4.yRotation(Math.random()*playTime);
-      u_world = m4.translate(u_world,  objOffset[0], objOffset[1], objOffset[2]-1  );
+    // console.log(" what is in parts " , parts)
+    // console.log(" obj offset ", objOffset)
+    
+    for (let i = 0; i < parts.length; i++){
+      const randomPosition = (Math.random()*100) -50;
+      const {bufferInfo, material} = parts[i]
+      letterList[i].startPosition[1] -= (deltaTime*0.00025)
+      console.log(" letterList[i].startPosition[2]+playTime  ", letterList[i].startPosition[2]+playTime , " playtime >>", playTime)
+      //let u_world = m4.yRotation(playTime) //m4.translate(viewProjectionMatrix,  Math.random()*playTime,  Math.random()*playTime,  Math.random()*playTime);
+      let u_world = m4.translate(viewProjectionMatrix, letterList[i].startPosition[0],letterList[i].startPosition[1],  letterList[i].startPosition[2]+playTime  );
       // calls gl.bindBuffer, gl.enableVertexAttribArray, gl.vertexAttribPointer
       webglUtils.setBuffersAndAttributes(gl, meshProgramInfo, bufferInfo);
       // calls gl.uniform
@@ -376,7 +387,7 @@ async function main() {
       // calls gl.drawArrays or gl.drawElements
       webglUtils.drawBufferInfo(gl, bufferInfo);
     }
-    console.log("before loop \n run is now > ", run)
+    // console.log("before loop \n run is now > ", run)
     //if (run){
     //  requestAnimationFrame(render);
     //}
@@ -384,12 +395,12 @@ async function main() {
   
   function update(time){
     if (run && playTime < 20){
-      console.log("before request, play time ", playTime ," \n run is now > ", run)
-      console.log( "reqeuest ", requestAnimationFrame(render) )
+      // console.log("before request, play time ", playTime ," \n run is now > ", run)
+      // console.log( "reqeuest ", requestAnimationFrame(render) )
       
       render(time)
       currentRequest = requestAnimationFrame(update)
-      console.log("====  after request  ==== ")
+      // console.log("====  after request  ==== ")
     } else {
       reset()
     }
@@ -398,7 +409,7 @@ async function main() {
   
   function reset(){
     cancelAnimationFrame(currentRequest)
-    console.log(" reset play time >" , playTime,"\n run >", run)
+    // console.log(" reset play time >" , playTime,"\n run >", run)
     run = false
     playTime = 0    
   }
